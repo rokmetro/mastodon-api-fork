@@ -10,15 +10,15 @@ class Locale {
   /// Returns the new instance of [Locale].
   const Locale({
     required this.lang,
-    required this.country,
+    this.country,
   });
 
   /// The language
   final Language lang;
 
   /// The country
-  final Country country;
+  final Country? country;
 
   @override
-  String toString() => '${lang.code}_${country.code}';
+  String toString() => country == null ? lang.code : '${lang.code}_${country!.code}';
 }
