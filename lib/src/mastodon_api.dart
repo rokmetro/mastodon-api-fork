@@ -3,6 +3,8 @@
 // modification, are permitted provided the conditions.
 
 // 🌎 Project imports:
+import 'package:mastodon_api/src/service/pager_service.dart';
+
 import 'core/client/client_context.dart';
 import 'core/config/retry_config.dart';
 import 'service/mastodon_v1_service.dart';
@@ -32,6 +34,8 @@ abstract class MastodonApi {
 
   /// Returns the OEmbed service.
   OEmbedService get oembed;
+
+  PagerService get pager;
 }
 
 class _MastodonApi implements MastodonApi {
@@ -64,6 +68,14 @@ class _MastodonApi implements MastodonApi {
             timeout: timeout,
             retryConfig: retryConfig,
           ),
+        ),
+        pager = PagerService(
+          instance: instance,
+          context: ClientContext(
+            bearerToken: bearerToken,
+            timeout: timeout,
+            retryConfig: retryConfig,
+          ),
         );
 
   @override
@@ -74,4 +86,7 @@ class _MastodonApi implements MastodonApi {
 
   @override
   final OEmbedService oembed;
+
+  @override
+  final PagerService pager;
 }

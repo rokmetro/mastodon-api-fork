@@ -21,7 +21,7 @@ class Relationship with _$Relationship {
     required String id,
 
     ///  This user’s profile bio
-    @JsonKey(name: 'note') required String bio,
+    @JsonKey(name: 'note') required String? bio,
 
     /// Are you following this user?
     @JsonKey(name: 'following') required bool isFollowing,
@@ -33,7 +33,7 @@ class Relationship with _$Relationship {
     @JsonKey(name: 'showing_reblogs') required bool isShowingReblogs,
 
     /// Have you enabled notifications for this user?
-    @JsonKey(name: 'notifying') required bool isNotifying,
+    @JsonKey(name: 'notifying') required bool? isNotifying,
 
     /// Are you blocking this user?
     @JsonKey(name: 'blocking') required bool isBlocking,

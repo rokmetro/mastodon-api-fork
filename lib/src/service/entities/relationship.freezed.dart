@@ -25,7 +25,7 @@ mixin _$Relationship {
 
   ///  This user’s profile bio
   @JsonKey(name: 'note')
-  String get bio => throw _privateConstructorUsedError;
+  String? get bio => throw _privateConstructorUsedError;
 
   /// Are you following this user?
   @JsonKey(name: 'following')
@@ -41,7 +41,7 @@ mixin _$Relationship {
 
   /// Have you enabled notifications for this user?
   @JsonKey(name: 'notifying')
-  bool get isNotifying => throw _privateConstructorUsedError;
+  bool? get isNotifying => throw _privateConstructorUsedError;
 
   /// Are you blocking this user?
   @JsonKey(name: 'blocking')
@@ -88,11 +88,11 @@ abstract class $RelationshipCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'note') String bio,
+      @JsonKey(name: 'note') String? bio,
       @JsonKey(name: 'following') bool isFollowing,
       @JsonKey(name: 'followed_by') bool isFollowed,
       @JsonKey(name: 'showing_reblogs') bool isShowingReblogs,
-      @JsonKey(name: 'notifying') bool isNotifying,
+      @JsonKey(name: 'notifying') bool? isNotifying,
       @JsonKey(name: 'blocking') bool isBlocking,
       @JsonKey(name: 'blocked_by') bool isBlocked,
       @JsonKey(name: 'muting') bool isMuting,
@@ -117,11 +117,11 @@ class _$RelationshipCopyWithImpl<$Res, $Val extends Relationship>
   @override
   $Res call({
     Object? id = null,
-    Object? bio = null,
+    Object? bio = freezed,
     Object? isFollowing = null,
     Object? isFollowed = null,
     Object? isShowingReblogs = null,
-    Object? isNotifying = null,
+    Object? isNotifying = freezed,
     Object? isBlocking = null,
     Object? isBlocked = null,
     Object? isMuting = null,
@@ -136,10 +136,10 @@ class _$RelationshipCopyWithImpl<$Res, $Val extends Relationship>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      bio: null == bio
+      bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isFollowing: null == isFollowing
           ? _value.isFollowing
           : isFollowing // ignore: cast_nullable_to_non_nullable
@@ -152,10 +152,10 @@ class _$RelationshipCopyWithImpl<$Res, $Val extends Relationship>
           ? _value.isShowingReblogs
           : isShowingReblogs // ignore: cast_nullable_to_non_nullable
               as bool,
-      isNotifying: null == isNotifying
+      isNotifying: freezed == isNotifying
           ? _value.isNotifying
           : isNotifying // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isBlocking: null == isBlocking
           ? _value.isBlocking
           : isBlocking // ignore: cast_nullable_to_non_nullable
@@ -202,11 +202,11 @@ abstract class _$$_RelationshipCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'note') String bio,
+      @JsonKey(name: 'note') String? bio,
       @JsonKey(name: 'following') bool isFollowing,
       @JsonKey(name: 'followed_by') bool isFollowed,
       @JsonKey(name: 'showing_reblogs') bool isShowingReblogs,
-      @JsonKey(name: 'notifying') bool isNotifying,
+      @JsonKey(name: 'notifying') bool? isNotifying,
       @JsonKey(name: 'blocking') bool isBlocking,
       @JsonKey(name: 'blocked_by') bool isBlocked,
       @JsonKey(name: 'muting') bool isMuting,
@@ -229,11 +229,11 @@ class __$$_RelationshipCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? bio = null,
+    Object? bio = freezed,
     Object? isFollowing = null,
     Object? isFollowed = null,
     Object? isShowingReblogs = null,
-    Object? isNotifying = null,
+    Object? isNotifying = freezed,
     Object? isBlocking = null,
     Object? isBlocked = null,
     Object? isMuting = null,
@@ -248,10 +248,10 @@ class __$$_RelationshipCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      bio: null == bio
+      bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isFollowing: null == isFollowing
           ? _value.isFollowing
           : isFollowing // ignore: cast_nullable_to_non_nullable
@@ -264,10 +264,10 @@ class __$$_RelationshipCopyWithImpl<$Res>
           ? _value.isShowingReblogs
           : isShowingReblogs // ignore: cast_nullable_to_non_nullable
               as bool,
-      isNotifying: null == isNotifying
+      isNotifying: freezed == isNotifying
           ? _value.isNotifying
           : isNotifying // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isBlocking: null == isBlocking
           ? _value.isBlocking
           : isBlocking // ignore: cast_nullable_to_non_nullable
@@ -310,30 +310,19 @@ class __$$_RelationshipCopyWithImpl<$Res>
 class _$_Relationship implements _Relationship {
   const _$_Relationship(
       {required this.id,
-      @JsonKey(name: 'note')
-          required this.bio,
-      @JsonKey(name: 'following')
-          required this.isFollowing,
-      @JsonKey(name: 'followed_by')
-          required this.isFollowed,
-      @JsonKey(name: 'showing_reblogs')
-          required this.isShowingReblogs,
-      @JsonKey(name: 'notifying')
-          required this.isNotifying,
-      @JsonKey(name: 'blocking')
-          required this.isBlocking,
-      @JsonKey(name: 'blocked_by')
-          required this.isBlocked,
-      @JsonKey(name: 'muting')
-          required this.isMuting,
+      @JsonKey(name: 'note') required this.bio,
+      @JsonKey(name: 'following') required this.isFollowing,
+      @JsonKey(name: 'followed_by') required this.isFollowed,
+      @JsonKey(name: 'showing_reblogs') required this.isShowingReblogs,
+      @JsonKey(name: 'notifying') required this.isNotifying,
+      @JsonKey(name: 'blocking') required this.isBlocking,
+      @JsonKey(name: 'blocked_by') required this.isBlocked,
+      @JsonKey(name: 'muting') required this.isMuting,
       @JsonKey(name: 'muting_notifications')
-          required this.isMutingNotifications,
-      @JsonKey(name: 'requested')
-          required this.isRequested,
-      @JsonKey(name: 'domain_blocking')
-          required this.isDomainBlocking,
-      @JsonKey(name: 'endorsed')
-          required this.isEndorsed,
+      required this.isMutingNotifications,
+      @JsonKey(name: 'requested') required this.isRequested,
+      @JsonKey(name: 'domain_blocking') required this.isDomainBlocking,
+      @JsonKey(name: 'endorsed') required this.isEndorsed,
       final List<Language>? languages})
       : _languages = languages;
 
@@ -347,7 +336,7 @@ class _$_Relationship implements _Relationship {
   ///  This user’s profile bio
   @override
   @JsonKey(name: 'note')
-  final String bio;
+  final String? bio;
 
   /// Are you following this user?
   @override
@@ -367,7 +356,7 @@ class _$_Relationship implements _Relationship {
   /// Have you enabled notifications for this user?
   @override
   @JsonKey(name: 'notifying')
-  final bool isNotifying;
+  final bool? isNotifying;
 
   /// Are you blocking this user?
   @override
@@ -491,30 +480,19 @@ class _$_Relationship implements _Relationship {
 abstract class _Relationship implements Relationship {
   const factory _Relationship(
       {required final String id,
-      @JsonKey(name: 'note')
-          required final String bio,
-      @JsonKey(name: 'following')
-          required final bool isFollowing,
-      @JsonKey(name: 'followed_by')
-          required final bool isFollowed,
-      @JsonKey(name: 'showing_reblogs')
-          required final bool isShowingReblogs,
-      @JsonKey(name: 'notifying')
-          required final bool isNotifying,
-      @JsonKey(name: 'blocking')
-          required final bool isBlocking,
-      @JsonKey(name: 'blocked_by')
-          required final bool isBlocked,
-      @JsonKey(name: 'muting')
-          required final bool isMuting,
+      @JsonKey(name: 'note') required final String? bio,
+      @JsonKey(name: 'following') required final bool isFollowing,
+      @JsonKey(name: 'followed_by') required final bool isFollowed,
+      @JsonKey(name: 'showing_reblogs') required final bool isShowingReblogs,
+      @JsonKey(name: 'notifying') required final bool? isNotifying,
+      @JsonKey(name: 'blocking') required final bool isBlocking,
+      @JsonKey(name: 'blocked_by') required final bool isBlocked,
+      @JsonKey(name: 'muting') required final bool isMuting,
       @JsonKey(name: 'muting_notifications')
-          required final bool isMutingNotifications,
-      @JsonKey(name: 'requested')
-          required final bool isRequested,
-      @JsonKey(name: 'domain_blocking')
-          required final bool isDomainBlocking,
-      @JsonKey(name: 'endorsed')
-          required final bool isEndorsed,
+      required final bool isMutingNotifications,
+      @JsonKey(name: 'requested') required final bool isRequested,
+      @JsonKey(name: 'domain_blocking') required final bool isDomainBlocking,
+      @JsonKey(name: 'endorsed') required final bool isEndorsed,
       final List<Language>? languages}) = _$_Relationship;
 
   factory _Relationship.fromJson(Map<String, dynamic> json) =
@@ -528,7 +506,7 @@ abstract class _Relationship implements Relationship {
 
   ///  This user’s profile bio
   @JsonKey(name: 'note')
-  String get bio;
+  String? get bio;
   @override
 
   /// Are you following this user?
@@ -548,7 +526,7 @@ abstract class _Relationship implements Relationship {
 
   /// Have you enabled notifications for this user?
   @JsonKey(name: 'notifying')
-  bool get isNotifying;
+  bool? get isNotifying;
   @override
 
   /// Are you blocking this user?

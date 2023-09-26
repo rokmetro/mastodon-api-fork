@@ -55,15 +55,12 @@ abstract class $AccountPreferencesCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'posting:default:visibility')
-          Visibility defaultVisibility,
-      @JsonKey(name: 'posting:default:sensitive')
-          bool isDefaultSensitive,
-      @JsonKey(name: 'posting:default:language')
-          Language defaultLanguage,
+      Visibility defaultVisibility,
+      @JsonKey(name: 'posting:default:sensitive') bool isDefaultSensitive,
+      @JsonKey(name: 'posting:default:language') Language defaultLanguage,
       @JsonKey(name: 'reading:expand:media')
-          DisplayMediaSetting expandMediaSetting,
-      @JsonKey(name: 'reading:expand:spoilers')
-          bool hasExpandSpoilers});
+      DisplayMediaSetting expandMediaSetting,
+      @JsonKey(name: 'reading:expand:spoilers') bool hasExpandSpoilers});
 }
 
 /// @nodoc
@@ -120,15 +117,12 @@ abstract class _$$_AccountPreferencesCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'posting:default:visibility')
-          Visibility defaultVisibility,
-      @JsonKey(name: 'posting:default:sensitive')
-          bool isDefaultSensitive,
-      @JsonKey(name: 'posting:default:language')
-          Language defaultLanguage,
+      Visibility defaultVisibility,
+      @JsonKey(name: 'posting:default:sensitive') bool isDefaultSensitive,
+      @JsonKey(name: 'posting:default:language') Language defaultLanguage,
       @JsonKey(name: 'reading:expand:media')
-          DisplayMediaSetting expandMediaSetting,
-      @JsonKey(name: 'reading:expand:spoilers')
-          bool hasExpandSpoilers});
+      DisplayMediaSetting expandMediaSetting,
+      @JsonKey(name: 'reading:expand:spoilers') bool hasExpandSpoilers});
 }
 
 /// @nodoc
@@ -179,15 +173,13 @@ class __$$_AccountPreferencesCopyWithImpl<$Res>
 class _$_AccountPreferences implements _AccountPreferences {
   const _$_AccountPreferences(
       {@JsonKey(name: 'posting:default:visibility')
-          required this.defaultVisibility,
+      required this.defaultVisibility,
       @JsonKey(name: 'posting:default:sensitive')
-          required this.isDefaultSensitive,
-      @JsonKey(name: 'posting:default:language')
-          required this.defaultLanguage,
-      @JsonKey(name: 'reading:expand:media')
-          required this.expandMediaSetting,
+      required this.isDefaultSensitive,
+      @JsonKey(name: 'posting:default:language') required this.defaultLanguage,
+      @JsonKey(name: 'reading:expand:media') required this.expandMediaSetting,
       @JsonKey(name: 'reading:expand:spoilers')
-          required this.hasExpandSpoilers});
+      required this.hasExpandSpoilers});
 
   factory _$_AccountPreferences.fromJson(Map<String, dynamic> json) =>
       _$$_AccountPreferencesFromJson(json);
@@ -267,15 +259,15 @@ class _$_AccountPreferences implements _AccountPreferences {
 abstract class _AccountPreferences implements AccountPreferences {
   const factory _AccountPreferences(
       {@JsonKey(name: 'posting:default:visibility')
-          required final Visibility defaultVisibility,
+      required final Visibility defaultVisibility,
       @JsonKey(name: 'posting:default:sensitive')
-          required final bool isDefaultSensitive,
+      required final bool isDefaultSensitive,
       @JsonKey(name: 'posting:default:language')
-          required final Language defaultLanguage,
+      required final Language defaultLanguage,
       @JsonKey(name: 'reading:expand:media')
-          required final DisplayMediaSetting expandMediaSetting,
+      required final DisplayMediaSetting expandMediaSetting,
       @JsonKey(name: 'reading:expand:spoilers')
-          required final bool hasExpandSpoilers}) = _$_AccountPreferences;
+      required final bool hasExpandSpoilers}) = _$_AccountPreferences;
 
   factory _AccountPreferences.fromJson(Map<String, dynamic> json) =
       _$_AccountPreferences.fromJson;

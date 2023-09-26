@@ -14,12 +14,12 @@ _$_Relationship _$$_RelationshipFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = _$_Relationship(
           id: $checkedConvert('id', (v) => v as String),
-          bio: $checkedConvert('note', (v) => v as String),
+          bio: $checkedConvert('note', (v) => v as String?),
           isFollowing: $checkedConvert('following', (v) => v as bool),
           isFollowed: $checkedConvert('followed_by', (v) => v as bool),
           isShowingReblogs:
               $checkedConvert('showing_reblogs', (v) => v as bool),
-          isNotifying: $checkedConvert('notifying', (v) => v as bool),
+          isNotifying: $checkedConvert('notifying', (v) => v as bool?),
           isBlocking: $checkedConvert('blocking', (v) => v as bool),
           isBlocked: $checkedConvert('blocked_by', (v) => v as bool),
           isMuting: $checkedConvert('muting', (v) => v as bool),
@@ -56,18 +56,6 @@ _$_Relationship _$$_RelationshipFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_RelationshipToJson(_$_Relationship instance) {
   final val = <String, dynamic>{
     'id': instance.id,
-    'note': instance.bio,
-    'following': instance.isFollowing,
-    'followed_by': instance.isFollowed,
-    'showing_reblogs': instance.isShowingReblogs,
-    'notifying': instance.isNotifying,
-    'blocking': instance.isBlocking,
-    'blocked_by': instance.isBlocked,
-    'muting': instance.isMuting,
-    'muting_notifications': instance.isMutingNotifications,
-    'requested': instance.isRequested,
-    'domain_blocking': instance.isDomainBlocking,
-    'endorsed': instance.isEndorsed,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -76,6 +64,18 @@ Map<String, dynamic> _$$_RelationshipToJson(_$_Relationship instance) {
     }
   }
 
+  writeNotNull('note', instance.bio);
+  val['following'] = instance.isFollowing;
+  val['followed_by'] = instance.isFollowed;
+  val['showing_reblogs'] = instance.isShowingReblogs;
+  writeNotNull('notifying', instance.isNotifying);
+  val['blocking'] = instance.isBlocking;
+  val['blocked_by'] = instance.isBlocked;
+  val['muting'] = instance.isMuting;
+  val['muting_notifications'] = instance.isMutingNotifications;
+  val['requested'] = instance.isRequested;
+  val['domain_blocking'] = instance.isDomainBlocking;
+  val['endorsed'] = instance.isEndorsed;
   writeNotNull('languages',
       instance.languages?.map((e) => _$LanguageEnumMap[e]!).toList());
   return val;
