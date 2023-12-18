@@ -16,7 +16,9 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
           id: $checkedConvert('id', (v) => v as String),
           url: $checkedConvert('url', (v) => v as String?),
           uri: $checkedConvert('uri', (v) => v as String),
-          content: $checkedConvert('content', (v) => v as String),
+          content: $checkedConvert('content', (v) => v as String?) ??
+              $checkedConvert('text', (v) => v as String?) ??
+              '',
           spoilerText: $checkedConvert('spoiler_text', (v) => v as String),
           visibility: $checkedConvert(
               'visibility', (v) => $enumDecode(_$VisibilityEnumMap, v)),
