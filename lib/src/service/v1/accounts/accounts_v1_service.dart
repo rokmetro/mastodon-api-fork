@@ -282,6 +282,9 @@ abstract class AccountsV1Service {
     String? tagged,
     int? limit,
     bool? excludeReblogs,
+    bool? excludeReplies,
+    bool? onlyMedia,
+    bool? pinned,
   });
 
   /// Accounts which follow the given account, if network is not hidden by the
@@ -1519,6 +1522,9 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
     String? tagged,
     int? limit,
     bool? excludeReblogs,
+    bool? excludeReplies,
+    bool? onlyMedia,
+    bool? pinned,
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
@@ -1531,6 +1537,9 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'tagged': tagged,
             'limit': limit,
             'exclude_reblogs': excludeReblogs,
+            'exclude_replies': excludeReplies,
+            'only_media': onlyMedia,
+            'pinned': pinned,
           },
         ),
         dataBuilder: Status.fromJson,
