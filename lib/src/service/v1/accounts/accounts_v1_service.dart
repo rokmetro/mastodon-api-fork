@@ -1421,8 +1421,18 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
     bool? locked,
     AccountDefaultSettingsParam? defaultSettings,
     List<AccountProfileMetaParam>? profileMeta,
-  }) async =>
-      super.transformSingleDataResponse(
+  }) async {
+    Map<String, Map<String, String>> fieldAttributes = {};
+    if (profileMeta != null) {
+      for (int i = 0; i < (profileMeta.length ?? 0); i++) {
+        AccountProfileMetaParam param = profileMeta[i];
+        fieldAttributes[i.toString()] = {
+          'name': param.name,
+          'value': param.value,
+        };
+      }
+    }
+    return super.transformSingleDataResponse(
         await super.patch(
           UserContext.oauth2Only,
           '/api/v1/accounts/update_credentials',
@@ -1432,23 +1442,17 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
             'discoverable': discoverable,
             'bot': bot,
             'locked': locked,
-            'source': {
-              'privacy': defaultSettings?.privacy,
-              'sensitive': defaultSettings?.sensitive,
-              'language': defaultSettings?.language,
-            },
-            'fields_attributes': profileMeta
-                ?.map(
-                  (e) => {
-                    'name': e.name,
-                    'value': e.value,
-                  },
-                )
-                .toList(),
+            'source': defaultSettings != null ? {
+              'privacy': defaultSettings.privacy,
+              'sensitive': defaultSettings.sensitive,
+              'language': defaultSettings.language,
+            } : null,
+            'fields_attributes': fieldAttributes,
           },
         ),
         dataBuilder: Account.fromJson,
       );
+  }
 
   @override
   Future<MastodonResponse<Account>> updateAvatarImage({

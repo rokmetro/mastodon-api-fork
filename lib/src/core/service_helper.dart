@@ -260,7 +260,7 @@ class ServiceHelper implements Service {
       userContext,
       Uri.https(_authority, unencodedPath),
       headers: {'Content-type': 'application/json'},
-      body: converter.jsonEncode(_convertQueryParameters(body)),
+      body: converter.jsonEncode(_removeNullValues(body)),
     );
 
     return validate != null ? validate(response) : response;
