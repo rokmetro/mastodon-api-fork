@@ -16,6 +16,7 @@ abstract class MastodonApi {
   factory MastodonApi({
     required String instance,
     String bearerToken = '',
+    Future<Map<String, String>> Function()? getContextHeaders,
     Duration timeout = const Duration(seconds: 10),
     RetryConfig? retryConfig,
   }) =>
@@ -24,6 +25,7 @@ abstract class MastodonApi {
         bearerToken: bearerToken,
         timeout: timeout,
         retryConfig: retryConfig,
+        getContextHeaders: getContextHeaders,
       );
 
   /// Returns the v1 service.
@@ -44,6 +46,7 @@ class _MastodonApi implements MastodonApi {
     required String instance,
     required String bearerToken,
     required Duration timeout,
+    required Future<Map<String, String>> Function()? getContextHeaders,
     RetryConfig? retryConfig,
   })  : v1 = MastodonV1Service(
           instance: instance,
@@ -51,6 +54,7 @@ class _MastodonApi implements MastodonApi {
             bearerToken: bearerToken,
             timeout: timeout,
             retryConfig: retryConfig,
+            getContextHeaders: getContextHeaders,
           ),
         ),
         v2 = MastodonV2Service(
@@ -59,6 +63,7 @@ class _MastodonApi implements MastodonApi {
             bearerToken: bearerToken,
             timeout: timeout,
             retryConfig: retryConfig,
+            getContextHeaders: getContextHeaders,
           ),
         ),
         oembed = OEmbedService(
@@ -67,6 +72,7 @@ class _MastodonApi implements MastodonApi {
             bearerToken: bearerToken,
             timeout: timeout,
             retryConfig: retryConfig,
+            getContextHeaders: getContextHeaders,
           ),
         ),
         pager = PagerService(
@@ -75,6 +81,7 @@ class _MastodonApi implements MastodonApi {
             bearerToken: bearerToken,
             timeout: timeout,
             retryConfig: retryConfig,
+            getContextHeaders: getContextHeaders,
           ),
         );
 

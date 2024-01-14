@@ -97,6 +97,13 @@ class ServiceHelper implements Service {
   /// The mastodon client
   final ClientContext _context;
 
+
+  Uri _parseUri(final String authority, final String unencodedPath,
+      [Map<String, dynamic> queryParameters = const {}]) {
+    Uri uri = Uri.parse('$authority$unencodedPath');
+    uri.replace(queryParameters: queryParameters);
+    return uri;
+  }
   @override
   Future<http.Response> get(
     UserContext userContext,
@@ -107,7 +114,7 @@ class ServiceHelper implements Service {
   }) async {
     final response = await _context.get(
       userContext,
-      Uri.https(
+      _parseUri(
         _authority,
         unencodedPath,
         _convertQueryParameters(queryParameters),
@@ -130,7 +137,7 @@ class ServiceHelper implements Service {
     final streamedResponse = await _context.getStream(
       userContext,
       StreamRequest(
-        Uri.https(
+        _parseUri(
           _authority,
           unencodedPath,
           _convertQueryParameters(queryParameters),
@@ -158,7 +165,7 @@ class ServiceHelper implements Service {
   }) async {
     final response = await _context.post(
       userContext,
-      Uri.https(
+      _parseUri(
         _authority,
         unencodedPath,
         _convertQueryParameters(queryParameters),
@@ -180,7 +187,7 @@ class ServiceHelper implements Service {
   }) async {
     final response = await _context.postMultipart(
       userContext,
-      Uri.https(
+      _parseUri(
         _authority,
         unencodedPath,
       ),
@@ -203,7 +210,7 @@ class ServiceHelper implements Service {
   }) async {
     final response = await _context.putMultipart(
       userContext,
-      Uri.https(
+      _parseUri(
         _authority,
         unencodedPath,
       ),
@@ -225,7 +232,7 @@ class ServiceHelper implements Service {
   }) async {
     final response = await _context.delete(
       userContext,
-      Uri.https(_authority, unencodedPath),
+      _parseUri(_authority, unencodedPath),
       body: body,
     );
 
@@ -241,7 +248,7 @@ class ServiceHelper implements Service {
   }) async {
     final response = await _context.put(
       userContext,
-      Uri.https(_authority, unencodedPath),
+      _parseUri(_authority, unencodedPath),
       headers: {'Content-type': 'application/json'},
       body: converter.jsonEncode(_removeNullValues(body)),
     );
@@ -258,7 +265,7 @@ class ServiceHelper implements Service {
   }) async {
     final response = await _context.patch(
       userContext,
-      Uri.https(_authority, unencodedPath),
+      _parseUri(_authority, unencodedPath),
       headers: {'Content-type': 'application/json'},
       body: converter.jsonEncode(_removeNullValues(body)),
     );
@@ -276,7 +283,7 @@ class ServiceHelper implements Service {
   }) async {
     final response = await _context.patchMultipart(
       userContext,
-      Uri.https(
+      _parseUri(
         _authority,
         unencodedPath,
       ),

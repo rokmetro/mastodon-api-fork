@@ -24,12 +24,14 @@ abstract class ClientContext {
   factory ClientContext({
     required String bearerToken,
     required Duration timeout,
+    Future<Map<String, String>> Function()? getContextHeaders,
     RetryConfig? retryConfig,
   }) =>
       _ClientContext(
         bearerToken: bearerToken,
         timeout: timeout,
         retryConfig: retryConfig,
+        getContextHeaders: getContextHeaders,
       );
 
   Future<http.Response> get(
@@ -96,11 +98,13 @@ class _ClientContext implements ClientContext {
   _ClientContext({
     required String bearerToken,
     required this.timeout,
+    Future<Map<String, String>> Function()? getContextHeaders,
     RetryConfig? retryConfig,
   })  : _clientResolver = ClientResolver(
           AnonymousClient(),
           bearerToken.isNotEmpty
-              ? OAuth2Client(bearerToken: bearerToken)
+              ? OAuth2Client(bearerToken: bearerToken,
+                getContextHeaders: getContextHeaders)
               : null,
         ),
         _retryPolicy = RetryPolicy(retryConfig);

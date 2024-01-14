@@ -13,11 +13,13 @@ import 'client.dart';
 
 class OAuth2Client extends Client {
   /// Returns the new instance of [OAuth2Client].
-  const OAuth2Client({required String bearerToken})
-      : _bearerToken = bearerToken;
+  const OAuth2Client({required String bearerToken,
+    Future<Map<String, String>> Function()? getContextHeaders,})
+      : _bearerToken = bearerToken, _getContextHeaders = getContextHeaders;
 
   /// The token to authenticate OAuth 2.0
   final String _bearerToken;
+  final Future<Map<String, String>> Function()? _getContextHeaders;
 
   @override
   Future<http.Response> get(
@@ -28,7 +30,8 @@ class OAuth2Client extends Client {
       await http
           .get(
             uri,
-            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            headers: {'Authorization': 'Bearer $_bearerToken'}
+              ..addAll(await _getContextHeaders?.call() ?? {})..addAll(headers),
           )
           .timeout(timeout);
 
@@ -41,6 +44,7 @@ class OAuth2Client extends Client {
     request.headers.addAll(
       {'Authorization': 'Bearer $_bearerToken', ...headers},
     );
+    request.headers.addAll(await _getContextHeaders?.call() ?? {});
 
     return request.send().timeout(timeout);
   }
@@ -55,7 +59,8 @@ class OAuth2Client extends Client {
       await http
           .post(
             uri,
-            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            headers: {'Authorization': 'Bearer $_bearerToken'}
+              ..addAll(await _getContextHeaders?.call() ?? {})..addAll(headers),
             body: body,
             encoding: utf8,
           )
@@ -71,7 +76,7 @@ class OAuth2Client extends Client {
     request.files.addAll(files);
     request.fields.addAll(body);
     request.headers.addAll({'Authorization': 'Bearer $_bearerToken'});
-
+    request.headers.addAll(await _getContextHeaders?.call() ?? {});
     return http.Response.fromStream(await request.send())
         .timeout(timeout)
         .then((response) {
@@ -93,7 +98,8 @@ class OAuth2Client extends Client {
       await http
           .delete(
             uri,
-            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            headers: {'Authorization': 'Bearer $_bearerToken'}
+              ..addAll(await _getContextHeaders?.call() ?? {})..addAll(headers),
             body: body,
             encoding: utf8,
           )
@@ -109,7 +115,8 @@ class OAuth2Client extends Client {
       await http
           .put(
             uri,
-            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            headers: {'Authorization': 'Bearer $_bearerToken'}
+              ..addAll(await _getContextHeaders?.call() ?? {})..addAll(headers),
             body: body,
             encoding: utf8,
           )
@@ -125,7 +132,8 @@ class OAuth2Client extends Client {
       await http
           .patch(
             uri,
-            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            headers: {'Authorization': 'Bearer $_bearerToken'}
+              ..addAll(await _getContextHeaders?.call() ?? {})..addAll(headers),
             body: body,
             encoding: utf8,
           )
