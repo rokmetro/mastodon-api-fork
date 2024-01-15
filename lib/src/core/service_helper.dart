@@ -101,9 +101,9 @@ class ServiceHelper implements Service {
   Uri _parseUri(final String authority, final String unencodedPath,
       [Map<String, dynamic> queryParameters = const {}]) {
     Uri uri = Uri.parse('$authority$unencodedPath');
-    uri.replace(queryParameters: queryParameters);
-    return uri;
+    return uri.replace(queryParameters: queryParameters);
   }
+
   @override
   Future<http.Response> get(
     UserContext userContext,
