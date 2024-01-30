@@ -48,9 +48,9 @@ class _ClientResolver implements ClientResolver {
       );
     }
 
-    if (userContext == UserContext.anonymousOnly) {
-      return true;
-    }
+    // if (userContext == UserContext.anonymousOnly) {
+    //   return true;
+    // }
 
     return oauth2Client == null;
   }
