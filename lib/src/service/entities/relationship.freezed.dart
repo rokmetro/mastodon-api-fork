@@ -193,11 +193,11 @@ class _$RelationshipCopyWithImpl<$Res, $Val extends Relationship>
 }
 
 /// @nodoc
-abstract class _$$_RelationshipCopyWith<$Res>
+abstract class _$$RelationshipImplCopyWith<$Res>
     implements $RelationshipCopyWith<$Res> {
-  factory _$$_RelationshipCopyWith(
-          _$_Relationship value, $Res Function(_$_Relationship) then) =
-      __$$_RelationshipCopyWithImpl<$Res>;
+  factory _$$RelationshipImplCopyWith(
+          _$RelationshipImpl value, $Res Function(_$RelationshipImpl) then) =
+      __$$RelationshipImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -218,11 +218,11 @@ abstract class _$$_RelationshipCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RelationshipCopyWithImpl<$Res>
-    extends _$RelationshipCopyWithImpl<$Res, _$_Relationship>
-    implements _$$_RelationshipCopyWith<$Res> {
-  __$$_RelationshipCopyWithImpl(
-      _$_Relationship _value, $Res Function(_$_Relationship) _then)
+class __$$RelationshipImplCopyWithImpl<$Res>
+    extends _$RelationshipCopyWithImpl<$Res, _$RelationshipImpl>
+    implements _$$RelationshipImplCopyWith<$Res> {
+  __$$RelationshipImplCopyWithImpl(
+      _$RelationshipImpl _value, $Res Function(_$RelationshipImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -243,7 +243,7 @@ class __$$_RelationshipCopyWithImpl<$Res>
     Object? isEndorsed = null,
     Object? languages = freezed,
   }) {
-    return _then(_$_Relationship(
+    return _then(_$RelationshipImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -307,8 +307,8 @@ class __$$_RelationshipCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(includeIfNull: false)
-class _$_Relationship implements _Relationship {
-  const _$_Relationship(
+class _$RelationshipImpl implements _Relationship {
+  const _$RelationshipImpl(
       {required this.id,
       @JsonKey(name: 'note') required this.bio,
       @JsonKey(name: 'following') required this.isFollowing,
@@ -326,8 +326,8 @@ class _$_Relationship implements _Relationship {
       final List<Language>? languages})
       : _languages = languages;
 
-  factory _$_Relationship.fromJson(Map<String, dynamic> json) =>
-      _$$_RelationshipFromJson(json);
+  factory _$RelationshipImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RelationshipImplFromJson(json);
 
   /// The account ID.
   @override
@@ -412,10 +412,10 @@ class _$_Relationship implements _Relationship {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Relationship &&
+            other is _$RelationshipImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.isFollowing, isFollowing) ||
@@ -466,12 +466,12 @@ class _$_Relationship implements _Relationship {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RelationshipCopyWith<_$_Relationship> get copyWith =>
-      __$$_RelationshipCopyWithImpl<_$_Relationship>(this, _$identity);
+  _$$RelationshipImplCopyWith<_$RelationshipImpl> get copyWith =>
+      __$$RelationshipImplCopyWithImpl<_$RelationshipImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RelationshipToJson(
+    return _$$RelationshipImplToJson(
       this,
     );
   }
@@ -493,10 +493,10 @@ abstract class _Relationship implements Relationship {
       @JsonKey(name: 'requested') required final bool isRequested,
       @JsonKey(name: 'domain_blocking') required final bool isDomainBlocking,
       @JsonKey(name: 'endorsed') required final bool isEndorsed,
-      final List<Language>? languages}) = _$_Relationship;
+      final List<Language>? languages}) = _$RelationshipImpl;
 
   factory _Relationship.fromJson(Map<String, dynamic> json) =
-      _$_Relationship.fromJson;
+      _$RelationshipImpl.fromJson;
 
   @override
 
@@ -568,6 +568,6 @@ abstract class _Relationship implements Relationship {
   List<Language>? get languages;
   @override
   @JsonKey(ignore: true)
-  _$$_RelationshipCopyWith<_$_Relationship> get copyWith =>
+  _$$RelationshipImplCopyWith<_$RelationshipImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -8,17 +8,15 @@ part of 'status.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
-      r'_$_Status',
+_$StatusImpl _$$StatusImplFromJson(Map json) => $checkedCreate(
+      r'_$StatusImpl',
       json,
       ($checkedConvert) {
-        final val = _$_Status(
+        final val = _$StatusImpl(
           id: $checkedConvert('id', (v) => v as String),
           url: $checkedConvert('url', (v) => v as String?),
           uri: $checkedConvert('uri', (v) => v as String),
-          content: $checkedConvert('content', (v) => v as String?) ??
-              $checkedConvert('text', (v) => v as String?) ??
-              '',
+          content: $checkedConvert('content', (v) => v as String),
           spoilerText: $checkedConvert('spoiler_text', (v) => v as String),
           visibility: $checkedConvert(
               'visibility', (v) => $enumDecode(_$VisibilityEnumMap, v)),
@@ -96,7 +94,7 @@ _$_Status _$$_StatusFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_StatusToJson(_$_Status instance) {
+Map<String, dynamic> _$$StatusImplToJson(_$StatusImpl instance) {
   final val = <String, dynamic>{
     'id': instance.id,
   };

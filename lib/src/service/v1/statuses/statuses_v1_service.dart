@@ -3,6 +3,8 @@
 // modification, are permitted provided the conditions.
 
 // 🌎 Project imports:
+import 'package:mastodon_api/src/service/entities/translation.dart';
+
 import '../../../core/client/client_context.dart';
 import '../../../core/client/user_context.dart';
 import '../../../core/language.dart';
@@ -349,6 +351,32 @@ abstract class StatusesV1Service {
   /// - https://docs.joinmastodon.org/methods/statuses/#context
   Future<MastodonResponse<StatusContext>> lookupStatusContext({
     required String statusId,
+  });
+
+  /// Obtain information about a status.
+  ///
+  /// ## Parameters
+  ///
+  /// - [statusId]: The ID of the Status in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - POST /api/v1/statuses/:id/translate HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:statuses
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/statuses/#translate
+  Future<MastodonResponse<Translation>> translateStatus({
+    required String statusId,
+    required Language language,
   });
 
   /// View who boosted a given status.
@@ -1043,6 +1071,22 @@ class _StatusesV1Service extends BaseService implements StatusesV1Service {
           '/api/v1/statuses/$statusId/context',
         ),
         dataBuilder: StatusContext.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<Translation>> translateStatus({
+    required String statusId,
+    required Language language,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/api/v1/statuses/$statusId/translate',
+          body: {
+            'lang': language.code
+          }
+        ),
+        dataBuilder: Translation.fromJson,
       );
 
   @override

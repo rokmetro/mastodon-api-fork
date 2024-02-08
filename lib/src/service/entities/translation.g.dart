@@ -2,60 +2,48 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'relationship.dart';
+part of 'translation.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RelationshipImpl _$$RelationshipImplFromJson(Map json) => $checkedCreate(
-      r'_$RelationshipImpl',
+_$TranslationImpl _$$TranslationImplFromJson(Map json) => $checkedCreate(
+      r'_$TranslationImpl',
       json,
       ($checkedConvert) {
-        final val = _$RelationshipImpl(
-          id: $checkedConvert('id', (v) => v as String),
-          bio: $checkedConvert('note', (v) => v as String?),
-          isFollowing: $checkedConvert('following', (v) => v as bool),
-          isFollowed: $checkedConvert('followed_by', (v) => v as bool),
-          isShowingReblogs:
-              $checkedConvert('showing_reblogs', (v) => v as bool),
-          isNotifying: $checkedConvert('notifying', (v) => v as bool?),
-          isBlocking: $checkedConvert('blocking', (v) => v as bool),
-          isBlocked: $checkedConvert('blocked_by', (v) => v as bool),
-          isMuting: $checkedConvert('muting', (v) => v as bool),
-          isMutingNotifications:
-              $checkedConvert('muting_notifications', (v) => v as bool),
-          isRequested: $checkedConvert('requested', (v) => v as bool),
-          isDomainBlocking:
-              $checkedConvert('domain_blocking', (v) => v as bool),
-          isEndorsed: $checkedConvert('endorsed', (v) => v as bool),
-          languages: $checkedConvert(
-              'languages',
-              (v) => (v as List<dynamic>?)
-                  ?.map((e) => $enumDecode(_$LanguageEnumMap, e))
+        final val = _$TranslationImpl(
+          content: $checkedConvert('content', (v) => v as String),
+          spoilerWarning:
+              $checkedConvert('spoiler_warning', (v) => v as String),
+          poll: $checkedConvert(
+              'poll',
+              (v) => v == null
+                  ? null
+                  : Poll.fromJson(Map<String, Object?>.from(v as Map))),
+          mediaAttachments: $checkedConvert(
+              'media_attachments',
+              (v) => (v as List<dynamic>)
+                  .map((e) => MediaAttachment.fromJson(
+                      Map<String, Object?>.from(e as Map)))
                   .toList()),
+          detectedSourceLanguage: $checkedConvert('detected_source_language',
+              (v) => $enumDecode(_$LanguageEnumMap, v)),
+          provider: $checkedConvert('provider', (v) => v as String),
         );
         return val;
       },
       fieldKeyMap: const {
-        'bio': 'note',
-        'isFollowing': 'following',
-        'isFollowed': 'followed_by',
-        'isShowingReblogs': 'showing_reblogs',
-        'isNotifying': 'notifying',
-        'isBlocking': 'blocking',
-        'isBlocked': 'blocked_by',
-        'isMuting': 'muting',
-        'isMutingNotifications': 'muting_notifications',
-        'isRequested': 'requested',
-        'isDomainBlocking': 'domain_blocking',
-        'isEndorsed': 'endorsed'
+        'spoilerWarning': 'spoiler_warning',
+        'mediaAttachments': 'media_attachments',
+        'detectedSourceLanguage': 'detected_source_language'
       },
     );
 
-Map<String, dynamic> _$$RelationshipImplToJson(_$RelationshipImpl instance) {
+Map<String, dynamic> _$$TranslationImplToJson(_$TranslationImpl instance) {
   final val = <String, dynamic>{
-    'id': instance.id,
+    'content': instance.content,
+    'spoiler_warning': instance.spoilerWarning,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -64,20 +52,12 @@ Map<String, dynamic> _$$RelationshipImplToJson(_$RelationshipImpl instance) {
     }
   }
 
-  writeNotNull('note', instance.bio);
-  val['following'] = instance.isFollowing;
-  val['followed_by'] = instance.isFollowed;
-  val['showing_reblogs'] = instance.isShowingReblogs;
-  writeNotNull('notifying', instance.isNotifying);
-  val['blocking'] = instance.isBlocking;
-  val['blocked_by'] = instance.isBlocked;
-  val['muting'] = instance.isMuting;
-  val['muting_notifications'] = instance.isMutingNotifications;
-  val['requested'] = instance.isRequested;
-  val['domain_blocking'] = instance.isDomainBlocking;
-  val['endorsed'] = instance.isEndorsed;
-  writeNotNull('languages',
-      instance.languages?.map((e) => _$LanguageEnumMap[e]!).toList());
+  writeNotNull('poll', instance.poll?.toJson());
+  val['media_attachments'] =
+      instance.mediaAttachments.map((e) => e.toJson()).toList();
+  val['detected_source_language'] =
+      _$LanguageEnumMap[instance.detectedSourceLanguage]!;
+  val['provider'] = instance.provider;
   return val;
 }
 

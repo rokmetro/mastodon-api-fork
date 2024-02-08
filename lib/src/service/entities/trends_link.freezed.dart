@@ -194,11 +194,11 @@ class _$TrendsLinkCopyWithImpl<$Res, $Val extends TrendsLink>
 }
 
 /// @nodoc
-abstract class _$$_TrendsLinkCopyWith<$Res>
+abstract class _$$TrendsLinkImplCopyWith<$Res>
     implements $TrendsLinkCopyWith<$Res> {
-  factory _$$_TrendsLinkCopyWith(
-          _$_TrendsLink value, $Res Function(_$_TrendsLink) then) =
-      __$$_TrendsLinkCopyWithImpl<$Res>;
+  factory _$$TrendsLinkImplCopyWith(
+          _$TrendsLinkImpl value, $Res Function(_$TrendsLinkImpl) then) =
+      __$$TrendsLinkImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -220,11 +220,11 @@ abstract class _$$_TrendsLinkCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TrendsLinkCopyWithImpl<$Res>
-    extends _$TrendsLinkCopyWithImpl<$Res, _$_TrendsLink>
-    implements _$$_TrendsLinkCopyWith<$Res> {
-  __$$_TrendsLinkCopyWithImpl(
-      _$_TrendsLink _value, $Res Function(_$_TrendsLink) _then)
+class __$$TrendsLinkImplCopyWithImpl<$Res>
+    extends _$TrendsLinkCopyWithImpl<$Res, _$TrendsLinkImpl>
+    implements _$$TrendsLinkImplCopyWith<$Res> {
+  __$$TrendsLinkImplCopyWithImpl(
+      _$TrendsLinkImpl _value, $Res Function(_$TrendsLinkImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -246,7 +246,7 @@ class __$$_TrendsLinkCopyWithImpl<$Res>
     Object? blurHash = freezed,
     Object? usageHistory = null,
   }) {
-    return _then(_$_TrendsLink(
+    return _then(_$TrendsLinkImpl(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -313,8 +313,8 @@ class __$$_TrendsLinkCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TrendsLink implements _TrendsLink {
-  const _$_TrendsLink(
+class _$TrendsLinkImpl implements _TrendsLink {
+  const _$TrendsLinkImpl(
       {required this.url,
       required this.title,
       required this.description,
@@ -333,8 +333,8 @@ class _$_TrendsLink implements _TrendsLink {
       required final List<UsageStatistics> usageHistory})
       : _usageHistory = usageHistory;
 
-  factory _$_TrendsLink.fromJson(Map<String, dynamic> json) =>
-      _$$_TrendsLinkFromJson(json);
+  factory _$TrendsLinkImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TrendsLinkImplFromJson(json);
 
   /// Location of linked resource.
   @override
@@ -413,10 +413,10 @@ class _$_TrendsLink implements _TrendsLink {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TrendsLink &&
+            other is _$TrendsLinkImpl &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -466,12 +466,12 @@ class _$_TrendsLink implements _TrendsLink {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TrendsLinkCopyWith<_$_TrendsLink> get copyWith =>
-      __$$_TrendsLinkCopyWithImpl<_$_TrendsLink>(this, _$identity);
+  _$$TrendsLinkImplCopyWith<_$TrendsLinkImpl> get copyWith =>
+      __$$TrendsLinkImplCopyWithImpl<_$TrendsLinkImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TrendsLinkToJson(
+    return _$$TrendsLinkImplToJson(
       this,
     );
   }
@@ -494,10 +494,10 @@ abstract class _TrendsLink implements TrendsLink {
       required final String embedUrl,
       @JsonKey(name: 'blurhash') final String? blurHash,
       @JsonKey(name: 'history')
-      required final List<UsageStatistics> usageHistory}) = _$_TrendsLink;
+      required final List<UsageStatistics> usageHistory}) = _$TrendsLinkImpl;
 
   factory _TrendsLink.fromJson(Map<String, dynamic> json) =
-      _$_TrendsLink.fromJson;
+      _$TrendsLinkImpl.fromJson;
 
   @override
 
@@ -565,6 +565,6 @@ abstract class _TrendsLink implements TrendsLink {
   List<UsageStatistics> get usageHistory;
   @override
   @JsonKey(ignore: true)
-  _$$_TrendsLinkCopyWith<_$_TrendsLink> get copyWith =>
+  _$$TrendsLinkImplCopyWith<_$TrendsLinkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
