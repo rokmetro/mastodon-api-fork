@@ -738,6 +738,10 @@ enum Language implements Serializable {
   @JsonValue('zh')
   chinese('zh', '中文'),
 
+  /// `zh-cn
+  @JsonValue('zh-cn')
+  chineseChina('zh-cn', '中文'),
+
   /// `zu`
   @JsonValue('zu')
   zulu('zu', 'isiZulu');
