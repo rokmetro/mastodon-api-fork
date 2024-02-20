@@ -49,6 +49,8 @@ mixin _$Status {
   int get reblogsCount => throw _privateConstructorUsedError;
 
   /// Primary language of this status.
+  @JsonKey(
+      name: 'language', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   Language? get language => throw _privateConstructorUsedError;
 
   /// ID of the status being replied.
@@ -129,6 +131,8 @@ abstract class $StatusCopyWith<$Res> {
       int favouritesCount,
       int repliesCount,
       int reblogsCount,
+      @JsonKey(
+          name: 'language', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       Language? language,
       String? inReplyToId,
       String? inReplyToAccountId,
@@ -369,6 +373,8 @@ abstract class _$$StatusImplCopyWith<$Res> implements $StatusCopyWith<$Res> {
       int favouritesCount,
       int repliesCount,
       int reblogsCount,
+      @JsonKey(
+          name: 'language', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       Language? language,
       String? inReplyToId,
       String? inReplyToAccountId,
@@ -564,6 +570,8 @@ class _$StatusImpl implements _Status {
       required this.favouritesCount,
       required this.repliesCount,
       required this.reblogsCount,
+      @JsonKey(
+          name: 'language', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       this.language,
       this.inReplyToId,
       this.inReplyToAccountId,
@@ -628,6 +636,8 @@ class _$StatusImpl implements _Status {
 
   /// Primary language of this status.
   @override
+  @JsonKey(
+      name: 'language', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   final Language? language;
 
   /// ID of the status being replied.
@@ -840,6 +850,8 @@ abstract class _Status implements Status {
       required final int favouritesCount,
       required final int repliesCount,
       required final int reblogsCount,
+      @JsonKey(
+          name: 'language', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       final Language? language,
       final String? inReplyToId,
       final String? inReplyToAccountId,
@@ -901,6 +913,8 @@ abstract class _Status implements Status {
   @override
 
   /// Primary language of this status.
+  @JsonKey(
+      name: 'language', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   Language? get language;
   @override
 

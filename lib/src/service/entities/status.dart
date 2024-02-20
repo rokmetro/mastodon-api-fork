@@ -54,6 +54,10 @@ class Status with _$Status {
     required int reblogsCount,
 
     /// Primary language of this status.
+    @JsonKey(
+      name: 'language',
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue
+    )
     Language? language,
 
     /// ID of the status being replied.

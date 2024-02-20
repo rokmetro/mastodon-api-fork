@@ -24,7 +24,9 @@ _$StatusImpl _$$StatusImplFromJson(Map json) => $checkedCreate(
           repliesCount: $checkedConvert('replies_count', (v) => v as int),
           reblogsCount: $checkedConvert('reblogs_count', (v) => v as int),
           language: $checkedConvert(
-              'language', (v) => $enumDecodeNullable(_$LanguageEnumMap, v)),
+              'language',
+              (v) => $enumDecodeNullable(_$LanguageEnumMap, v,
+                  unknownValue: JsonKey.nullForUndefinedEnumValue)),
           inReplyToId: $checkedConvert('in_reply_to_id', (v) => v as String?),
           inReplyToAccountId:
               $checkedConvert('in_reply_to_account_id', (v) => v as String?),
