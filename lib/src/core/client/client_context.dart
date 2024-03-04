@@ -102,7 +102,7 @@ class _ClientContext implements ClientContext {
     RetryConfig? retryConfig,
   })  : _clientResolver = ClientResolver(
           AnonymousClient(),
-          bearerToken.isNotEmpty
+          bearerToken.isNotEmpty || getContextHeaders != null
               ? OAuth2Client(bearerToken: bearerToken,
                 getContextHeaders: getContextHeaders)
               : null,

@@ -335,6 +335,9 @@ abstract class BaseService implements _Service {
     );
   }
 
+  bool _isSuccessful(BaseResponse response) =>
+      response.statusCode >= 200 && response.statusCode < 300;
+
   Response checkResponse(
     final Response response,
   ) {
@@ -376,6 +379,13 @@ abstract class BaseService implements _Service {
       );
     }
 
+    if (!_isSuccessful(response)) {
+      throw MastodonException(
+        'Something went wrong.',
+        response,
+      );
+    }
+
     tryJsonDecode(response, response.body);
 
     return response;
@@ -412,6 +422,13 @@ abstract class BaseService implements _Service {
 
     if (HttpStatus.partialContent.equalsByCode(response.statusCode)) {
       throw PendingException('Still being processed.', response);
+    }
+
+    if (!_isSuccessful(response)) {
+      throw MastodonException(
+        'Something went wrong.',
+        response,
+      );
     }
 
     tryJsonDecode(response, event);
