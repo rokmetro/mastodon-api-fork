@@ -35,7 +35,7 @@ class Status with _$Status {
     required String uri,
 
     /// HTML-encoded status content.
-    required String content,
+    required String? content,
 
     /// Subject or summary line, below which status content is collapsed until
     /// expanded.

@@ -30,7 +30,7 @@ mixin _$Status {
   String get uri => throw _privateConstructorUsedError;
 
   /// HTML-encoded status content.
-  String get content => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
 
   /// Subject or summary line, below which status content is collapsed until
   /// expanded.
@@ -125,7 +125,7 @@ abstract class $StatusCopyWith<$Res> {
       {String id,
       String? url,
       String uri,
-      String content,
+      String? content,
       String spoilerText,
       Visibility visibility,
       int favouritesCount,
@@ -174,7 +174,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? id = null,
     Object? url = freezed,
     Object? uri = null,
-    Object? content = null,
+    Object? content = freezed,
     Object? spoilerText = null,
     Object? visibility = null,
     Object? favouritesCount = null,
@@ -212,10 +212,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       spoilerText: null == spoilerText
           ? _value.spoilerText
           : spoilerText // ignore: cast_nullable_to_non_nullable
@@ -367,7 +367,7 @@ abstract class _$$StatusImplCopyWith<$Res> implements $StatusCopyWith<$Res> {
       {String id,
       String? url,
       String uri,
-      String content,
+      String? content,
       String spoilerText,
       Visibility visibility,
       int favouritesCount,
@@ -418,7 +418,7 @@ class __$$StatusImplCopyWithImpl<$Res>
     Object? id = null,
     Object? url = freezed,
     Object? uri = null,
-    Object? content = null,
+    Object? content = freezed,
     Object? spoilerText = null,
     Object? visibility = null,
     Object? favouritesCount = null,
@@ -456,10 +456,10 @@ class __$$StatusImplCopyWithImpl<$Res>
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       spoilerText: null == spoilerText
           ? _value.spoilerText
           : spoilerText // ignore: cast_nullable_to_non_nullable
@@ -611,7 +611,7 @@ class _$StatusImpl implements _Status {
 
   /// HTML-encoded status content.
   @override
-  final String content;
+  final String? content;
 
   /// Subject or summary line, below which status content is collapsed until
   /// expanded.
@@ -844,7 +844,7 @@ abstract class _Status implements Status {
       {required final String id,
       final String? url,
       required final String uri,
-      required final String content,
+      required final String? content,
       required final String spoilerText,
       required final Visibility visibility,
       required final int favouritesCount,
@@ -888,7 +888,7 @@ abstract class _Status implements Status {
   @override
 
   /// HTML-encoded status content.
-  String get content;
+  String? get content;
   @override
 
   /// Subject or summary line, below which status content is collapsed until

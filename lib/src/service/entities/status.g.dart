@@ -16,7 +16,7 @@ _$StatusImpl _$$StatusImplFromJson(Map json) => $checkedCreate(
           id: $checkedConvert('id', (v) => v as String),
           url: $checkedConvert('url', (v) => v as String?),
           uri: $checkedConvert('uri', (v) => v as String),
-          content: $checkedConvert('content', (v) => v as String),
+          content: $checkedConvert('content', (v) => v as String?),
           spoilerText: $checkedConvert('spoiler_text', (v) => v as String),
           visibility: $checkedConvert(
               'visibility', (v) => $enumDecode(_$VisibilityEnumMap, v)),
@@ -109,7 +109,7 @@ Map<String, dynamic> _$$StatusImplToJson(_$StatusImpl instance) {
 
   writeNotNull('url', instance.url);
   val['uri'] = instance.uri;
-  val['content'] = instance.content;
+  writeNotNull('content', instance.content);
   val['spoiler_text'] = instance.spoilerText;
   val['visibility'] = _$VisibilityEnumMap[instance.visibility]!;
   val['favourites_count'] = instance.favouritesCount;
