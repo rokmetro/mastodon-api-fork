@@ -240,6 +240,32 @@ abstract class AccountsV1Service {
     required String accountId,
   });
 
+  /// Load multiple accounts.
+  ///
+  /// ## Parameters
+  ///
+  /// - [id[]] The IDs of the Accounts in the database.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - GET /api/v1/accounts/:id HTTP/1.1
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - Anonymous
+  /// - OAuth 2.0
+  ///
+  /// ## Required Scopes
+  ///
+  /// - read:accounts
+  ///
+  /// ## Reference
+  ///
+  /// - https://docs.joinmastodon.org/methods/accounts/#get
+  Future<MastodonResponse<List<Account>>> lookupAccounts({
+    required List<String> ids,
+  });
+
   /// Statuses posted to the given account.
   ///
   /// ## Parameters
@@ -1510,6 +1536,20 @@ class _AccountsV1Service extends BaseService implements AccountsV1Service {
           UserContext.oauth2OrAnonymous,
           '/api/v1/accounts/$accountId',
         ),
+        dataBuilder: Account.fromJson,
+      );
+
+  @override
+  Future<MastodonResponse<List<Account>>> lookupAccounts({
+    required List<String> ids,
+  }) async =>
+      super.transformMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrAnonymous,
+          '/api/v1/accounts',
+          queryParameters: {
+            'id[]': ids,
+          }),
         dataBuilder: Account.fromJson,
       );
 
