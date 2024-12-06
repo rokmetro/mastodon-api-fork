@@ -52,6 +52,7 @@ export 'package:mastodon_api/src/service/entities/media_attachment_type.dart';
 export 'package:mastodon_api/src/service/entities/media_focal_points.dart';
 export 'package:mastodon_api/src/service/entities/media_meta.dart';
 export 'package:mastodon_api/src/service/entities/media_variants.dart';
+export 'package:mastodon_api/src/service/entities/mention.dart';
 export 'package:mastodon_api/src/service/entities/notification.dart';
 export 'package:mastodon_api/src/service/entities/notification_snapshot.dart';
 export 'package:mastodon_api/src/service/entities/notification_type.dart';

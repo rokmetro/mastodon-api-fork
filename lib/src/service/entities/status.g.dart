@@ -20,9 +20,12 @@ _$StatusImpl _$$StatusImplFromJson(Map json) => $checkedCreate(
           spoilerText: $checkedConvert('spoiler_text', (v) => v as String),
           visibility: $checkedConvert(
               'visibility', (v) => $enumDecode(_$VisibilityEnumMap, v)),
-          favouritesCount: $checkedConvert('favourites_count', (v) => v as int),
-          repliesCount: $checkedConvert('replies_count', (v) => v as int),
-          reblogsCount: $checkedConvert('reblogs_count', (v) => v as int),
+          favouritesCount:
+              $checkedConvert('favourites_count', (v) => (v as num).toInt()),
+          repliesCount:
+              $checkedConvert('replies_count', (v) => (v as num).toInt()),
+          reblogsCount:
+              $checkedConvert('reblogs_count', (v) => (v as num).toInt()),
           language: $checkedConvert(
               'language',
               (v) => $enumDecodeNullable(_$LanguageEnumMap, v,
@@ -71,6 +74,12 @@ _$StatusImpl _$$StatusImplFromJson(Map json) => $checkedCreate(
               'tags',
               (v) => (v as List<dynamic>)
                   .map((e) => Tag.fromJson(Map<String, Object?>.from(e as Map)))
+                  .toList()),
+          mentions: $checkedConvert(
+              'mentions',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      Mention.fromJson(Map<String, Object?>.from(e as Map)))
                   .toList()),
           createdAt:
               $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
@@ -133,6 +142,7 @@ Map<String, dynamic> _$$StatusImplToJson(_$StatusImpl instance) {
       instance.mediaAttachments.map((e) => e.toJson()).toList();
   val['emojis'] = instance.emojis.map((e) => e.toJson()).toList();
   val['tags'] = instance.tags.map((e) => e.toJson()).toList();
+  val['mentions'] = instance.mentions.map((e) => e.toJson()).toList();
   val['created_at'] = instance.createdAt.toIso8601String();
   return val;
 }

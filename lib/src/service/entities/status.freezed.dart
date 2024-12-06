@@ -12,7 +12,7 @@ part of 'status.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Status _$StatusFromJson(Map<String, dynamic> json) {
   return _Status.fromJson(json);
@@ -108,11 +108,18 @@ mixin _$Status {
   /// Hashtags used within the status content.
   List<Tag> get tags => throw _privateConstructorUsedError;
 
+  /// Mentions of users within the status content.
+  List<Mention> get mentions => throw _privateConstructorUsedError;
+
   /// The date when this status was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this Status to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StatusCopyWith<Status> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -150,6 +157,7 @@ abstract class $StatusCopyWith<$Res> {
       List<MediaAttachment> mediaAttachments,
       List<Emoji> emojis,
       List<Tag> tags,
+      List<Mention> mentions,
       DateTime createdAt});
 
   $AccountCopyWith<$Res> get account;
@@ -168,6 +176,8 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,6 +207,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     Object? mediaAttachments = null,
     Object? emojis = null,
     Object? tags = null,
+    Object? mentions = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -304,6 +315,10 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
+      mentions: null == mentions
+          ? _value.mentions
+          : mentions // ignore: cast_nullable_to_non_nullable
+              as List<Mention>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -311,6 +326,8 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     ) as $Val);
   }
 
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AccountCopyWith<$Res> get account {
@@ -319,6 +336,8 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     });
   }
 
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApplicationCopyWith<$Res>? get application {
@@ -331,6 +350,8 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     });
   }
 
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PollCopyWith<$Res>? get poll {
@@ -343,6 +364,8 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
     });
   }
 
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StatusCopyWith<$Res>? get reblog {
@@ -392,6 +415,7 @@ abstract class _$$StatusImplCopyWith<$Res> implements $StatusCopyWith<$Res> {
       List<MediaAttachment> mediaAttachments,
       List<Emoji> emojis,
       List<Tag> tags,
+      List<Mention> mentions,
       DateTime createdAt});
 
   @override
@@ -412,6 +436,8 @@ class __$$StatusImplCopyWithImpl<$Res>
       _$StatusImpl _value, $Res Function(_$StatusImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -441,6 +467,7 @@ class __$$StatusImplCopyWithImpl<$Res>
     Object? mediaAttachments = null,
     Object? emojis = null,
     Object? tags = null,
+    Object? mentions = null,
     Object? createdAt = null,
   }) {
     return _then(_$StatusImpl(
@@ -548,6 +575,10 @@ class __$$StatusImplCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
+      mentions: null == mentions
+          ? _value._mentions
+          : mentions // ignore: cast_nullable_to_non_nullable
+              as List<Mention>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -589,10 +620,12 @@ class _$StatusImpl implements _Status {
       required final List<MediaAttachment> mediaAttachments,
       required final List<Emoji> emojis,
       required final List<Tag> tags,
+      required final List<Mention> mentions,
       required this.createdAt})
       : _mediaAttachments = mediaAttachments,
         _emojis = emojis,
-        _tags = tags;
+        _tags = tags,
+        _mentions = mentions;
 
   factory _$StatusImpl.fromJson(Map<String, dynamic> json) =>
       _$$StatusImplFromJson(json);
@@ -732,13 +765,24 @@ class _$StatusImpl implements _Status {
     return EqualUnmodifiableListView(_tags);
   }
 
+  /// Mentions of users within the status content.
+  final List<Mention> _mentions;
+
+  /// Mentions of users within the status content.
+  @override
+  List<Mention> get mentions {
+    if (_mentions is EqualUnmodifiableListView) return _mentions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_mentions);
+  }
+
   /// The date when this status was created.
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, reblog: $reblog, mediaAttachments: $mediaAttachments, emojis: $emojis, tags: $tags, createdAt: $createdAt)';
+    return 'Status(id: $id, url: $url, uri: $uri, content: $content, spoilerText: $spoilerText, visibility: $visibility, favouritesCount: $favouritesCount, repliesCount: $repliesCount, reblogsCount: $reblogsCount, language: $language, inReplyToId: $inReplyToId, inReplyToAccountId: $inReplyToAccountId, isFavourited: $isFavourited, isReblogged: $isReblogged, isMuted: $isMuted, isBookmarked: $isBookmarked, isSensitive: $isSensitive, isPinned: $isPinned, lastStatusAt: $lastStatusAt, account: $account, application: $application, poll: $poll, reblog: $reblog, mediaAttachments: $mediaAttachments, emojis: $emojis, tags: $tags, mentions: $mentions, createdAt: $createdAt)';
   }
 
   @override
@@ -788,11 +832,12 @@ class _$StatusImpl implements _Status {
                 .equals(other._mediaAttachments, _mediaAttachments) &&
             const DeepCollectionEquality().equals(other._emojis, _emojis) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
+            const DeepCollectionEquality().equals(other._mentions, _mentions) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -822,10 +867,13 @@ class _$StatusImpl implements _Status {
         const DeepCollectionEquality().hash(_mediaAttachments),
         const DeepCollectionEquality().hash(_emojis),
         const DeepCollectionEquality().hash(_tags),
+        const DeepCollectionEquality().hash(_mentions),
         createdAt
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StatusImplCopyWith<_$StatusImpl> get copyWith =>
@@ -869,129 +917,136 @@ abstract class _Status implements Status {
       required final List<MediaAttachment> mediaAttachments,
       required final List<Emoji> emojis,
       required final List<Tag> tags,
+      required final List<Mention> mentions,
       required final DateTime createdAt}) = _$StatusImpl;
 
   factory _Status.fromJson(Map<String, dynamic> json) = _$StatusImpl.fromJson;
 
-  @override
-
   /// ID of the status in the database.
-  String get id;
   @override
+  String get id;
 
   /// A link to the status's HTML representation.
-  String? get url;
   @override
+  String? get url;
 
   /// URI of the status used for federation.
-  String get uri;
   @override
+  String get uri;
 
   /// HTML-encoded status content.
-  String? get content;
   @override
+  String? get content;
 
   /// Subject or summary line, below which status content is collapsed until
   /// expanded.
-  String get spoilerText;
   @override
+  String get spoilerText;
 
   /// Visibility of this status.
-  Visibility get visibility;
   @override
+  Visibility get visibility;
 
   /// How many favourites this status has received.
-  int get favouritesCount;
   @override
+  int get favouritesCount;
 
   /// How many replies this status has received.
-  int get repliesCount;
   @override
+  int get repliesCount;
 
   /// How many boosts this status has received.
-  int get reblogsCount;
   @override
+  int get reblogsCount;
 
   /// Primary language of this status.
+  @override
   @JsonKey(
       name: 'language', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   Language? get language;
-  @override
 
   /// ID of the status being replied.
-  String? get inReplyToId;
   @override
+  String? get inReplyToId;
 
   /// ID of the account being replied to.
-  String? get inReplyToAccountId;
   @override
+  String? get inReplyToAccountId;
 
   /// Have you favourited this status?
+  @override
   @JsonKey(name: 'favourited')
   bool? get isFavourited;
-  @override
 
   /// Have you boosted this status?
+  @override
   @JsonKey(name: 'reblogged')
   bool? get isReblogged;
-  @override
 
   /// Have you muted notifications for this status's conversation?
+  @override
   @JsonKey(name: 'muted')
   bool? get isMuted;
-  @override
 
   /// Have you bookmarked this status?
+  @override
   @JsonKey(name: 'bookmarked')
   bool? get isBookmarked;
-  @override
 
   /// Is this status marked as sensitive content?
+  @override
   @JsonKey(name: 'sensitive')
   bool? get isSensitive;
-  @override
 
   /// Have you pinned this status?
+  @override
   @JsonKey(name: 'pinned')
   bool? get isPinned;
-  @override
 
   /// The time and date the last status was posted at.
-  DateTime? get lastStatusAt;
   @override
+  DateTime? get lastStatusAt;
 
   /// The account that authored this status.
-  Account get account;
   @override
+  Account get account;
 
   /// The application used to post this status.
-  Application? get application;
   @override
+  Application? get application;
 
   /// The poll attached to the status.
-  Poll? get poll;
   @override
+  Poll? get poll;
 
   /// The status being reblogged.
-  Status? get reblog;
   @override
+  Status? get reblog;
 
   /// Media that is attached to this status.
-  List<MediaAttachment> get mediaAttachments;
   @override
+  List<MediaAttachment> get mediaAttachments;
 
   /// Custom emoji to be used when rendering status content.
-  List<Emoji> get emojis;
   @override
+  List<Emoji> get emojis;
 
   /// Hashtags used within the status content.
-  List<Tag> get tags;
   @override
+  List<Tag> get tags;
+
+  /// Mentions of users within the status content.
+  @override
+  List<Mention> get mentions;
 
   /// The date when this status was created.
-  DateTime get createdAt;
   @override
-  @JsonKey(ignore: true)
+  DateTime get createdAt;
+
+  /// Create a copy of Status
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatusImplCopyWith<_$StatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

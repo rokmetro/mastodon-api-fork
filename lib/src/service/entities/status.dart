@@ -13,6 +13,7 @@ import 'account.dart';
 import 'application.dart';
 import 'emoji.dart';
 import 'media_attachment.dart';
+import 'mention.dart';
 import 'poll.dart';
 import 'tag.dart';
 
@@ -107,6 +108,9 @@ class Status with _$Status {
 
     /// Hashtags used within the status content.
     required List<Tag> tags,
+
+    /// Mentions of users within the status content.
+    required List<Mention> mentions,
 
     /// The date when this status was created.
     required DateTime createdAt,
